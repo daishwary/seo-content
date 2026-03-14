@@ -16,7 +16,7 @@ This project was built to be run inside a Conda environment.
 
 1. Create and activate a conda environment:
    ```bash
-   conda create -n seo_agent python=3.10
+   conda create -n seo_agent python=3.12
    conda activate seo_agent
    ```
 2. Install the necessary packages:
