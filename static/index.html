@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO Content Generator Agent</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>✨ SEO AI Agent</h1>
+            <p>Generate high-quality, SEO-optimized articles based on real search engine data.</p>
+        </header>
+
+        <main>
+            <section class="card form-section">
+                <h2>Generate Article</h2>
+                <form id="generateForm">
+                    <div class="form-group">
+                        <label for="topic">Keyword or Topic</label>
+                        <input type="text" id="topic" placeholder="e.g. Best productivity tools for remote teams" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="wordCount">Target Word Count</label>
+                            <input type="number" id="wordCount" value="1500" min="100" max="3000">
+                        </div>
+                        <div class="form-group">
+                            <label for="language">Language</label>
+                            <select id="language">
+                                <option value="English">English</option>
+                                <option value="Spanish">Spanish</option>
+                                <option value="French">French</option>
+                                <option value="German">German</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="submitBtn">
+                        <span id="btnText">Generate Content</span>
+                        <div id="btnSpinner" class="spinner hidden"></div>
+                    </button>
+                </form>
+            </section>
+
+            <section class="card status-section hidden" id="statusSection">
+                <h2>Job Status: <span id="statusBadge" class="badge pending">Pending</span></h2>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <p id="statusMessage" class="status-msg">Initializing background agents...</p>
+            </section>
+
+            <section class="results-section hidden" id="resultsSection">
+                <!-- Tabs for Content, SEO, Links, FAQ -->
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="preview">Article Preview</button>
+                    <button class="tab-btn" data-tab="seo">SEO Metadata</button>
+                    <button class="tab-btn" data-tab="links">Link Strategy</button>
+                    <button class="tab-btn" data-tab="faq">FAQ</button>
+                    <button class="tab-btn" data-tab="schema">Schema Markup</button>
+                </div>
+
+                <div class="tab-content active card" id="previewTab">
+                    <h1 id="articleTitle"></h1>
+                    <div id="articleContent" class="markdown-body"></div>
+                </div>
+
+                <div class="tab-content card" id="seoTab">
+                    <h3>Title Tag</h3>
+                    <p id="seoTitle" class="highlight-box"></p>
+                    
+                    <h3>Meta Description</h3>
+                    <p id="seoDesc" class="highlight-box"></p>
+                    
+                    <h3>Target Keywords</h3>
+                    <div class="keyword-tags">
+                        <strong>Primary:</strong> <span class="tag primary" id="primaryKw"></span>
+                    </div>
+                    <div class="keyword-tags" id="secondaryKwContainer">
+                        <strong>Secondary:</strong>
+                        <!-- tags injected here -->
+                    </div>
+                </div>
+
+                <div class="tab-content card" id="linksTab">
+                    <h3>Internal Links</h3>
+                    <ul class="link-list" id="internalLinks"></ul>
+                    
+                    <h3>External References</h3>
+                    <ul class="link-list" id="externalLinks"></ul>
+                </div>
+
+                <div class="tab-content card" id="faqTab">
+                    <div class="faq-accordion" id="faqContainer"></div>
+                </div>
+
+                <div class="tab-content card" id="schemaTab">
+                    <pre><code id="schemaCode"></code></pre>
+                </div>
+            </section>
+            
+            <section class="card error-section hidden" id="errorSection">
+                <h2>Generation Failed</h2>
+                <p id="errorMsg" class="error-text"></p>
+            </section>
+        </main>
+    </div>
+
+    <!-- Minimal marked.js to render markdown safely for demo purposes -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="/static/app.js"></script>
+</body>
+</html>
